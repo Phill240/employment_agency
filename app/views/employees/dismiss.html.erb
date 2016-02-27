@@ -1,0 +1,15 @@
+<div class="page-header">
+  <h2>Dismiss <%= @employee.full_name %></h2>
+</div>
+
+<%= bootstrap_form_for @employee, :url => fire_employee_path do |f| %>
+
+  <%= f.hidden_field :is_fired, :value => 1 %>
+  <%= f.text_area :dismissal_reason %>
+
+  <div class="form-actions">
+    <%= f.submit "Dismiss", class: "btn btn-danger" %>
+    <%= link_to "Return", employees_path, class: "btn btn-default" %>
+  </div>
+
+<% end %>

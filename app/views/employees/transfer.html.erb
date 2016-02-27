@@ -1,0 +1,16 @@
+<div class="page-header">
+  <h2>Transfer <%= @employee.full_name %></h2>
+</div>
+
+<%= bootstrap_form_for @employee, :url => move_employee_path do |f| %>
+
+  <%= f.collection_select :department_id, Department.all, :id, :name, :prompt => 'Choose a department' %>
+  <%= f.collection_select :job_id, Job.all, :id, :name, :prompt => 'Choose a job', :class => "form-control" %>
+  <%= f.number_field :salary, :step => 1 %>
+
+  <div class="form-actions">
+    <%= f.submit "Transfer", class: "btn btn-primary" %>
+    <%= link_to "Return", employees_path, class: "btn btn-default" %>
+  </div>
+
+<% end %>

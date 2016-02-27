@@ -1,0 +1,7 @@
+<tr>
+  <td><%= action.date %></td> 
+  <td><%= action.type_text %></td> 
+  <td><%= display_changes(action.department_old.try(:name), action.department_new.try(:name)) %></td> 
+  <td><%= display_changes(action.job_old.try(:name), action.job_new.try(:name)) %></td> 
+  <td><%= display_changes(action.salary_old, action.salary_new) %></td> 
+</tr>

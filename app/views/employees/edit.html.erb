@@ -1,0 +1,15 @@
+<div class="page-header">
+  <h2>Edit <%= @employee.full_name %></h2>
+</div>
+
+<%= bootstrap_form_for @employee do |f| %>
+
+  <%= f.text_field :first_name %>
+  <%= f.text_field :last_name %>
+
+  <div class="form-actions">
+    <%= f.submit "Сохранить", class: "btn btn-primary" %>
+    <%= link_to "Назад", employees_path, class: "btn btn-default" %>
+  </div>
+
+<% end %>

@@ -1,0 +1,23 @@
+<div class="page-header">
+  <h1>Employees</h1>
+</div>
+
+<p>
+  <a class="btn btn-success" href="<%= new_employee_path %>">Add an employee</a>
+</p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>First name</th> 
+      <th>Last name</th> 
+      <th>Department</th> 
+      <th>Job</th> 
+      <th>Salary</th> 
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => @employees %>
+  </tbody>
+</table>

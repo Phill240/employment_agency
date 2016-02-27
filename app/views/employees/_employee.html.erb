@@ -1,0 +1,16 @@
+<tr>
+  <td><%= employee.first_name %></td> 
+  <td><%= employee.last_name %></td> 
+  <td><%= employee.department.try(:name) %></td> 
+  <td><%= employee.job.try(:name) %></td> 
+  <td><%= employee.salary %></td> 
+  <td>      
+    <%= link_to "History", employee_path(employee), class: "btn btn-xs btn-primary" %>
+      
+    <% unless employee.is_fired %>  
+      <%= link_to "Edit", edit_employee_path(employee), class: "btn btn-xs btn-warning" %>
+      <%= link_to "Transfer", transfer_employee_path(employee), class: "btn btn-xs btn-success" %>
+      <%= link_to "Dismiss", dismiss_employee_path(employee), class: "btn btn-xs btn-danger" %>    
+    <% end %>
+  </td>
+</tr>

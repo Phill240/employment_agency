@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h2><%= @employee.full_name %></h2>
+</div>
+<p>
+  <%= link_to "Return to the list", employees_path %>  
+</p>
+
+<% if @employee.is_fired %>
+  <div class="alert alert-danger" role="alert">
+      <p>This employee has been fired.</p>
+      <p><b>Reason:</b> <%= @employee.dismissal_reason %> </p>
+  </div>  
+<% end %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Date</th> 
+      <th>Type</th> 
+      <th>Department</th> 
+      <th>Job</th> 
+      <th>Salary</th> 
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: "action", collection: @actions %>
+  </tbody>
+</table>
