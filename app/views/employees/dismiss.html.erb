@@ -5,6 +5,7 @@
 <%= bootstrap_form_for @employee, :url => fire_employee_path do |f| %>
 
   <%= f.hidden_field :is_fired, :value => 1 %>
+  <%= f.text_field :action_date, :value => @employee.action_date || DateTime.now.to_s(:db) %>
   <%= f.text_area :dismissal_reason %>
 
   <div class="form-actions">

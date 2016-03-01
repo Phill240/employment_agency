@@ -1,0 +1,14 @@
+<div class="page-header">
+  <h2>New job</h2>
+</div>
+
+<%= bootstrap_form_for @job do |f| %>
+
+  <%= f.text_field :name %>
+
+  <div class="form-actions">
+    <%= f.submit "Create", class: "btn btn-primary" %>
+    <%= link_to "Return", jobs_path, class: "btn btn-default" %>
+  </div>
+
+<% end %>

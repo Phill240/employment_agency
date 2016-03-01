@@ -9,17 +9,19 @@ class Employee < ActiveRecord::Base
   has_many :fire_actions
   
   
+  # Additional atribute that is used for dismissing or moving an employee
+  attr_accessor :action_date  
+  
+  
   # Validations  
-  validates :first_name, :last_name, :job_id, :department_id, :salary,  presence: true
+  validates :first_name, :last_name, :job_id, :department_id, :salary,  presence: true  
+  validate { errors.add(:action_date, "must be a valid date") unless action_date.blank? || (DateTime.parse(action_date) rescue false) }
   
   
   # Callbacks
-  before_update :check_is_fired
   after_create :save_hire_action
   after_update :save_update_action
-  
-  attr_accessor :action_date
-  
+    
   TRANSFER_FIELDS = [:job_id, :department_id, :salary]
   
   
@@ -29,12 +31,6 @@ class Employee < ActiveRecord::Base
   
   
   private
-  
-  def check_is_fired
-    return true unless self.is_fired
-    self.errors.add(:base, "Cannot update a fired employee")
-    false
-  end
   
   def save_hire_action
     self.hire_actions.create({ 
@@ -54,7 +50,7 @@ class Employee < ActiveRecord::Base
   def save_transfer_action(fields)
     return if fields.empty?
     
-    changes = { :date => self.updated_at }
+    changes = { :date => get_action_date }
     fields.each do |k, v|
       changes["#{k}_old"] = Array.wrap(v).first
       changes["#{k}_new"] = Array.wrap(v).last
@@ -63,9 +59,11 @@ class Employee < ActiveRecord::Base
   end
   
   def save_dismiss_action
-    self.fire_actions.create({ :date => self.updated_at })        
+    self.fire_actions.create({ :date => get_action_date })        
   end
   
-  
+  def get_action_date
+    self.action_date.present? ? self.action_date : self.updated_at
+  end
   
 end

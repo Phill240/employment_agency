@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h1>Departments</h1>
+</div>
+
+<p>
+  <a class="btn btn-success" href="<%= new_department_path %>">Add a department</a>
+</p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th> 
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => @departments %>
+  </tbody>
+</table>

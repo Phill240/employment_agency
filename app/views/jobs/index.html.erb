@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h1>Jobs</h1>
+</div>
+
+<p>
+  <a class="btn btn-success" href="<%= new_job_path %>">Add a job</a>
+</p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th> 
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => @jobs %>
+  </tbody>
+</table>

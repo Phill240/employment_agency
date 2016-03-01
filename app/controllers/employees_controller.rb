@@ -3,7 +3,7 @@ class EmployeesController < ApplicationController
   
   # Shows a list of employees
   def index
-    @employees = Employee.includes(:job, :department).all
+    @employees = Employee.includes(:job, :department).all.order(id: :desc)
   end
   
   # Shows a form for a new employee
@@ -78,7 +78,7 @@ class EmployeesController < ApplicationController
   end
   
   def employee_move_params
-    employee_params :department_id, :job_id, :salary
+    employee_params :department_id, :job_id, :salary, :action_date
   end
   
   def employee_new_params
@@ -86,7 +86,7 @@ class EmployeesController < ApplicationController
   end
   
   def employee_fire_params
-    employee_params :is_fired, :dismissal_reason
+    employee_params :is_fired, :dismissal_reason, :action_date
   end
     
   def employee_params(*param_list)    

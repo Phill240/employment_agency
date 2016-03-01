@@ -1,0 +1,14 @@
+<div class="page-header">
+  <h2>New department</h2>
+</div>
+
+<%= bootstrap_form_for @department do |f| %>
+
+  <%= f.text_field :name %>
+
+  <div class="form-actions">
+    <%= f.submit "Create", class: "btn btn-primary" %>
+    <%= link_to "Return", departments_path, class: "btn btn-default" %>
+  </div>
+
+<% end %>
